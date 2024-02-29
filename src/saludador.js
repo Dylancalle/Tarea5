@@ -6,28 +6,31 @@ function saludar(nombre) {
   return "Hola " + nombre;
 }
 
-function saludar(nombre, genero) {
-  let saludo = "Hola ";
-  if(nombre == "" || genero == "")
+function saludarfecha() {
+  let fechaActual = new Date();
+  let horaActual = fechaActual.getHours();
+  let saludo;
+  if(horaActual<=12 && horaActual>=6)
   {
-    saludo = "";
-  }
-  else{
-    if(genero == 'F')
+    saludo= "Buenos dias ";
+  }else{
+    if(horaActual<=19 && horaActual>12)
     {
-      saludo = saludo + "Sra." + nombre;
+      saludo= "Buenas tardes ";
     }else{
-      if(genero == 'M')
+      if((horaActual>19 && horaActual<=24) || (horaActual>=0 && horaActual<6))
       {
-        saludo = saludo + "Sr." + nombre;
+        saludo= "Buenas noches ";
+      }else{
+        saludo="error";
       }
     }
   }
-  return saludo 
+  return saludo;
 }
 
 function saludar(nombre, genero, edad) {
-  let saludo = "Hola ";
+  let saludo = saludarfecha();
   if(nombre == "" || genero == "" || edad == "")
   {
     saludo = "";
