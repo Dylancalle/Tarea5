@@ -6,32 +6,53 @@ function saludar(nombre) {
   return "Hola " + nombre;
 }
 
-function saludarfecha() {
+function saludarfecha(idioma) {
   let fechaActual = new Date();
   let horaActual = fechaActual.getHours();
   let saludo;
-  if(horaActual<=12 && horaActual>=6)
+  if(idioma=="ES")
   {
-    saludo= "Buenos dias ";
-  }else{
-    if(horaActual<=19 && horaActual>12)
+    if(horaActual<=12 && horaActual>=6)
     {
-      saludo= "Buenas tardes ";
+      saludo= "Buenos dias ";
     }else{
-      if((horaActual>19 && horaActual<=24) || (horaActual>=0 && horaActual<6))
+      if(horaActual<=19 && horaActual>12)
       {
-        saludo= "Buenas noches ";
+        saludo= "Buenas tardes ";
       }else{
-        saludo="error";
+        if((horaActual>19 && horaActual<=24) || (horaActual>=0 && horaActual<6))
+        {
+          saludo= "Buenas noches ";
+        }else{
+          saludo="error";
+        }
       }
     }
+  }else{
+    if(horaActual<=12 && horaActual>=6)
+    {
+      saludo= "Good Morning ";
+    }else{
+      if(horaActual<=19 && horaActual>12)
+      {
+        saludo= "Good Afternoon ";
+      }else{
+        if((horaActual>19 && horaActual<=24) || (horaActual>=0 && horaActual<6))
+        {
+          saludo= "Good Evening ";
+        }else{
+          saludo="error";
+        }
+      }
+    }
+
   }
   return saludo;
 }
 
-function saludar(nombre, genero, edad) {
-  let saludo = saludarfecha();
-  if(nombre == "" || genero == "" || edad == "")
+function saludar(nombre, genero, edad, idioma) {
+  let saludo = saludarfecha(idioma);
+  if(nombre == "" || genero == "" || edad == "" || idioma =="" )
   {
     saludo = "";
   }else
@@ -40,15 +61,18 @@ function saludar(nombre, genero, edad) {
     {
       if(genero == 'F')
       {
-        saludo = saludo + "Sra." + nombre;
+        if(idioma=="ES"){saludo = saludo + "Sra." + nombre;}
+        else{saludo = saludo + "Mrs." + nombre;}
       }else{
         if(genero == 'M')
         {
-          saludo = saludo + "Sr." + nombre;
+          if(idioma=="ES"){saludo = saludo + "Sr." + nombre;}
+          else{saludo = saludo + "Mr." + nombre;}
         }
       }
     }else{
-      saludo = saludo + "Joven " + nombre;
+      if(idioma=="ES"){saludo = saludo + "Joven " + nombre;}
+      else{saludo = saludo + "Young " + nombre;}
     }
   }
   return saludo 
